@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenger</title>
+</head>
+<body>
+    <script>
+        let showTopics = () => {
+            let str = '<ul>'
+            for (let i = 1; i <= localStorage.clickcount; i++) {
+                console.log(localStorage.getItem(i));
+                str += `<li>${localStorage.getItem(i)}</li>`;
+            }
+            str += `</ul>`;
+            document.getElementById('topics').innerHTML = str;
+        }
+    </script>
+    <div>
+        hello
+        <button onclick=showTopics()>click</button>
+    </div>
+    <div id='topics'></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenger</title>
+</head>
+<body>
+    <script>
+        let addTopic = () => {
+            let topic = document.getElementById('topic').value;
+            if (localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+            } else {
+                localStorage.clickcount = 1;
+            }
+            localStorage.setItem(localStorage.clickcount, topic);
+            document.getElementById('topic').value = '';
+            console.log(localStorage.clickcount)
+ 
+            // onChange();
+        }
+
+        let onChange = () => {
+            for (let i = 1; i <= localStorage.clickcount; i++) {
+                console.log(localStorage.getItem(i));
+            }
+        }
+    </script>
+    <form action="topics.html">
+        <label>Title</label>
+        <input type="text" id="topic">
+        <button onclick=addTopic()>Save</button>
+    </form>
+    
+    
+
+</body>
+</html>
