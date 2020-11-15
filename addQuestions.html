@@ -28,29 +28,30 @@
             <p style="margin-right: 3vw; font-size: 1.6vw; color: #650061;">Add Question</p>
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 25px;">Question</label> <br>
-                <input type="text" class="text-box">
+                <input type="text" class="text-box" id="questionTitle">
             </div>
 
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 25px;">Topic</label> <br>
                 <select class="text-box" id="topicsOfQuestion">
-                    <option value="">CSE</option>
-                    <option value="" selected>CS</option>
-                    <option value="">EN</option>
                 </select>
             </div>
             <div style="margin-bottom: 20px;">
                 <label for="addTopic" style="font-size: 25px;">Options</label> <br>
-                <div>
-                    <input type="text" class="text-box">
-                    <button class="option-btn-add">+</button>
-                    <button class="option-btn-remove">X</button>
+
+                <div id="optionsTextBoxes">
+                    <div>
+                        <input type="text" class="text-box">
+                        <button class="option-btn-add">+</button>
+                        <button class="option-btn-remove">X</button>
+                    </div>
+                    <div>
+                        <input type="text" class="text-box">
+                        <button class="option-btn-add" onclick=addOption()>+</button>
+                        <button class="option-btn-remove" onclick=deleteOption()>X</button>
+                    </div>
                 </div>
-                <div>
-                    <input type="text" class="text-box">
-                    <button class="option-btn-add">+</button>
-                    <button class="option-btn-remove">X</button>
-                </div>
+                
                 
             </div>
             
