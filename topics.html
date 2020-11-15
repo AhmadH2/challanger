@@ -18,11 +18,11 @@
     <div class="admin-page">
         <div class="menu col-3">
             <div class="menu-btns">
-                <button class="menu-btn">Dashboard</button>
-                <button class="menu-btn">Quizzs</button>
-                <button class="menu-btn">Questions Base</button>
-                <button class="menu-btn">Topics</button>
-                <button class="menu-btn">Settings</button>
+                <button class="menu-btn"><a href="./dashboard.html" style="text-decoration:none">Dashboard</a></button>
+                <button class="menu-btn"><a href="./quizes.html" style="text-decoration:none">Quizzs</a></button>
+                <button class="menu-btn"><a href="./questions.html" style="text-decoration:none">Questions Base</a></button>
+                <button class="menu-btn"><a href="./topics.html" style="text-decoration:none">Topics</a></button>
+                <button class="menu-btn"><a href="#" style="text-decoration:none">Settings</a></button>
             </div>
             <div style="border: 1px solid blue;"></div>
         </div>
@@ -36,17 +36,6 @@
     </div>
 
     <script type="text/javascript">
-        // let showTopics = () => {
-        //     let str = '<ul>'
-        //     for (let i = 1; i <= localStorage.clickcount; i++) {
-        //         console.log(localStorage.getItem(i));
-        //         str += `<li>${localStorage.getItem(i)}</li>`;
-        //     }
-        //     str += `</ul>`;
-        //     document.getElementById('topics').innerHTML = str;
-        // }
-
-        // topics = db.topics
 
         readTopics();
     </script>
