@@ -24,9 +24,26 @@
             <div style="border: 1px solid blue;"></div>
         </div>
         <div class="add-content col-9">
-            <p style="margin-right: 3vw; font-size: 1.6vw; color: #650061;">Add Topic</p>
-            <label for="addTopic" style="font-size: 25px;">Title</label> <br>
-            <input type="text" class="text-box">
+            <p style="margin-right: 3vw; font-size: 1.6vw; color: #650061;">Add Quize</p>
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 20px;">Title</label> <br>
+                <input type="text" class="text-box">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 20px;">Topic</label> <br>
+                <select class="text-box" id="major">
+                    <option value="">CSE</option>
+                    <option value="" selected>CS</option>
+                    <option value="">EN</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="addTopic" style="font-size: 20px;">Number of Questions</label> <br>
+                <input type="text" class="text-box">
+                <input type="text" class="text-box">
+            </div>
+
             <br><br>
             <button class="add-content-btn">Save</button>
         </div>

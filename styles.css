@@ -229,5 +229,30 @@ body{
     height: 6vh;
     margin-right: 1.5vw;
     font-size: 1.6vw;
+}
 
+.text-box{
+    width: 46vw;
+    border: 1px solid #C6C6C6;
+    border-radius: 13px;
+    height: 5vh;
+    margin-bottom: 5px;
+}
+
+.option-btn-add{
+    width: 4vw;
+    border: 1px solid #C6C6C6;
+    border-radius: 13px;
+    height: 5vh;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.option-btn-remove{
+    width: 4vw;
+    border: 1px solid #C6C6C6;
+    border-radius: 13px;
+    height: 5vh;
+    border-radius: 5px;
+    background-color: red;
 }
