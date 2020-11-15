@@ -40,28 +40,20 @@
                 <label for="addTopic" style="font-size: 25px;">Options</label> <br>
 
                 <div id="optionsTextBoxes">
-                    <div>
-                        <input type="text" class="text-box">
-                        <button class="option-btn-add">+</button>
-                        <button class="option-btn-remove">X</button>
-                    </div>
-                    <div>
-                        <input type="text" class="text-box">
-                        <button class="option-btn-add" onclick=addOption()>+</button>
-                        <button class="option-btn-remove" onclick=deleteOption()>X</button>
-                    </div>
+
                 </div>
                 
                 
             </div>
             
             <br><br>
-            <button class="add-content-btn">Save</button>
+            <button class="add-content-btn" onclick=addQuestion()>Save</button>
         </div>
     </div>
 
     <script type="text/javascript">
         showTopics('topicsOfQuestion');
+        showOptions();
     </script>
 
 </body>
