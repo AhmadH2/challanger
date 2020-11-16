@@ -84,14 +84,27 @@ let showTopics = (id) => {
 }
 
 let readQuizes = () => {
-    let quizsHtml = '';
-    quizes.forEach(quiz => quizsHtml += `<li>${quiz.title}, ${quiz.topic}</li>`);
+    let quizsHtml = `<tr>
+                    <th class="th">Title</th>
+                    <th class="th">Topic</th>
+                    <th class="th"># of Questions</th>
+                </tr>`;
+
+    quizes.forEach(quiz => quizsHtml += `<tr><td>${quiz.title}</td><td>${quiz.topic}
+    </td><td>${quiz.numOfQuestions}</td></tr>`);
     document.getElementById('quizesList').innerHTML = quizsHtml;
 }
 
 let readQuestions = () => {
-    let questionHtml = '';
-    questions.forEach(question => questionHtml += `<li>Title: ${question.title},Topic: ${question.topic}, Options: ${question.options}</li>`);
+    let questionHtml = `<tr>
+                <th class="th">Title</th>
+                <th class="th">Topic</th>
+                <th class="th">Options</th>
+                </tr>`;
+    
+    questions.forEach(question => questionHtml +=
+        `<tr><td>${question.title}</td><td>${question.topic}</td><td>${question.options}</td></tr>`);
+    
     document.getElementById('questionsList').innerHTML = questionHtml;
 }
 
@@ -113,7 +126,7 @@ let addOption = () => {
 }
 
 let deleteOption = () => {
-    if(options.length > 0) {
+    if(options.length > 2) {
         options.pop();
         showOptions();
     }

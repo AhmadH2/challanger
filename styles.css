@@ -1,6 +1,4 @@
-body{
-    /* font-family: 'Open Sans'; */
-}
+
 .container{
     display: flex;
     flex-direction: column;
@@ -14,7 +12,8 @@ body{
     display: flex;
     padding: 0px;
     align-items: flex-end;
-    height: 100vh;
+    /* height: 100vh; */
+    height: 56vw;
     background-image: linear-gradient(to bottom right, #E756A2, #A028A9);
 }
 
@@ -256,3 +255,16 @@ body{
     border-radius: 5px;
     background-color: red;
 }
+
+.th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-image: linear-gradient(to right, #f336e3, #ac51a4);
+    color: white;
+    width: 35%;
+}
+
+
