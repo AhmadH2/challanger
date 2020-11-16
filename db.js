@@ -1,9 +1,9 @@
 
 
-let topics = ['topic1', 'topic2', 'topic3'];
+let topics = [];
 let quizes = [];
 let questions = [];
-let options = [0,1];
+let optionsFlags = [1, 0];
 
 class Question{
     constructor(title, topic, options) {
@@ -18,6 +18,13 @@ class Quize{
         this.title = title;
         this.topic = topic;
         this.numOfQuestions = numOfQuestions;
+    }
+}
+
+class Option{
+    constructor(text, isCorrect) {
+        this.text = text;
+        this.isCorrect = isCorrect;
     }
 }
 
@@ -55,21 +62,25 @@ let addQuestion = () => {
     let title = document.getElementById('questionTitle').value;
     let topicId = document.getElementById('topicsOfQuestion').selectedIndex;
     let topic = document.getElementById("topicsOfQuestion").options[topicId].innerHTML;
-    let opt = [];
-    for(let i=0; i<options.length; i++) {
-        opt[i] = document.getElementById(`opt${i}`).value;
-    }
-    questions.push(new Question(title, topic, opt));
+    let options = saveOptions();
+
+    questions.push(new Question(title, topic, options));
     localStorage.setItem("questions", JSON.stringify(questions));
     document.getElementById('questionTitle').value = '';
     for (let i = 0; i < options.length; i++) {
         document.getElementById(`opt${i}`).value = '';
     }
-    console.log(questions[0].title);
 }
 
-
-
+let saveOptions = () => {
+    let options = [];
+    for (let i = 0; i < optionsFlags.length; i++) {
+        optionText = document.getElementById(`opt${i}`).value;
+        optionFlag = optionsFlags[i];
+        options.push(new Option(optionText, optionFlag));
+    }
+    return options;
+}
 
 let readTopics = () => {
     let topicsHtml = '';
@@ -103,31 +114,57 @@ let readQuestions = () => {
                 </tr>`;
     
     questions.forEach(question => questionHtml +=
-        `<tr><td>${question.title}</td><td>${question.topic}</td><td>${question.options}</td></tr>`);
+        `<tr><td>${question.title}</td><td>${question.topic}</td><td>
+        <table>
+        <tr><td>${question.options[0].text}</td><td>${question.options[0].isCorrect}</td></tr>
+        <tr><td>${question.options[1].text}</td><td>${question.options[1].isCorrect}</td></tr>
+        </table>
+        </td></tr>`);
     
     document.getElementById('questionsList').innerHTML = questionHtml;
 }
 
 let showOptions = () => {
-    let optionsHtml = '';
-    for(let i=0; i<options.length; i++) {
+    let optionsHtml = `<div>
+                        <input type="text" class="text-box" id="opt0">
+                        <i class="fa fa-plus-circle fa0" onclick=addOption()></i>
+                        <i class="fa fa-check-circle fa1"></i>
+                    </div>
+                    <div>
+                        <input type="text" class="text-box" id="opt1">
+                        <i class="fa fa-minus-circle fa0"  onclick=removeOption()></i>
+                        <i class="fa fa-check-circle fa${optionsFlags[1]}" onclick=setCorrectOption(1)></i>
+                    </div>`;
+    for (let i = 2; i < optionsFlags.length; i++) {
+        
         optionsHtml += `<div>
                         <input type="text" class="text-box" id="opt${i}">
-                        <button class="option-btn-add" onclick=addOption()>+</button>
-                        <button class="option-btn-remove" onclick=deleteOption()>X</button>
+                        <i class="fa fa-minus-circle fa0" onclick=removeOption()></i>
+                        <i class="fa fa-check-circle fa${optionsFlags[i]}" onclick=setCorrectOption(${i})></i>
                     </div>`;
     }
     document.getElementById('optionsTextBoxes').innerHTML = optionsHtml;
 }
 
 let addOption = () => {
-    options.push(options.length);
+    optionsFlags.push(0);
     showOptions();
 }
 
-let deleteOption = () => {
-    if(options.length > 2) {
-        options.pop();
+let setCorrectOption = (index) => {
+
+    if (optionsFlags[index] == 0) {
+        optionsFlags[index] = 1;
+    }
+    else {
+        optionsFlags[index] = 0;
+    } 
+    showOptions();
+}
+
+let removeOption = () => {
+    if (optionsFlags.length > 2) {
+        optionsFlags.pop();
         showOptions();
     }
 
