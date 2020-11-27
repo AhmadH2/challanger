@@ -112,14 +112,18 @@ let readQuestions = () => {
                 <th class="th">Topic</th>
                 <th class="th">Options</th>
                 </tr>`;
-    
-    questions.forEach(question => questionHtml +=
-        `<tr><td>${question.title}</td><td>${question.topic}</td><td>
-        <table>
-        <tr><td>${question.options[0].text}</td><td>${question.options[0].isCorrect}</td></tr>
-        <tr><td>${question.options[1].text}</td><td>${question.options[1].isCorrect}</td></tr>
-        </table>
-        </td></tr>`);
+    let opt = '';
+
+    for(let i=0; i<questions.length; i++){
+        questionHtml += `<tr><td>${questions[i].title}</td><td>
+        ${questions[i].topic}</td><td><table>`;
+        
+        for(let j=0; j< questions[i].options.length; j++){
+            questionHtml += `<tr><td>${questions[i].options[j].text}</td><td>
+            ${questions[i].options[j].isCorrect}</td></tr>`;
+        }
+        questionHtml += '</table></td></tr>';
+    }
     
     document.getElementById('questionsList').innerHTML = questionHtml;
 }
@@ -148,7 +152,25 @@ let showOptions = () => {
 
 let addOption = () => {
     optionsFlags.push(0);
+    updateOptions(1);
+}
+    
+
+let updateOptions = (fix=0) => {
+
+    let values = [];
+
+    for(let i=0; i<optionsFlags.length - fix; i++) {
+        console.log(document.getElementById(`opt${i}`).value);
+        values.push(document.getElementById(`opt${i}`).value);
+    }
+    
     showOptions();
+    
+    for(let i=0; i<values.length; i++) {
+        document.getElementById(`opt${i}`).value = values[i];
+    }
+
 }
 
 let setCorrectOption = (index) => {
@@ -159,13 +181,15 @@ let setCorrectOption = (index) => {
     else {
         optionsFlags[index] = 0;
     } 
-    showOptions();
+
+    updateOptions();
 }
+
 
 let removeOption = () => {
     if (optionsFlags.length > 2) {
         optionsFlags.pop();
-        showOptions();
+        updateOptions();
     }
 
 }
