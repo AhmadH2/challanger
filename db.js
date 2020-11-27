@@ -136,14 +136,14 @@ let showOptions = () => {
                     </div>
                     <div>
                         <input type="text" class="text-box" id="opt1">
-                        <i class="fa fa-minus-circle fa0"  onclick=removeOption()></i>
+                        <i class="fa fa-minus-circle fa0"  onclick=removeOption(1)></i>
                         <i class="fa fa-check-circle fa${optionsFlags[1]}" onclick=setCorrectOption(1)></i>
                     </div>`;
     for (let i = 2; i < optionsFlags.length; i++) {
         
         optionsHtml += `<div>
                         <input type="text" class="text-box" id="opt${i}">
-                        <i class="fa fa-minus-circle fa0" onclick=removeOption()></i>
+                        <i class="fa fa-minus-circle fa0" onclick=removeOption(${i})></i>
                         <i class="fa fa-check-circle fa${optionsFlags[i]}" onclick=setCorrectOption(${i})></i>
                     </div>`;
     }
@@ -156,14 +156,15 @@ let addOption = () => {
 }
     
 
-let updateOptions = (fix=0) => {
+let updateOptions = (fix=0, values=[]) => {
 
-    let values = [];
-
-    for(let i=0; i<optionsFlags.length - fix; i++) {
-        console.log(document.getElementById(`opt${i}`).value);
-        values.push(document.getElementById(`opt${i}`).value);
+    
+    if(values.length == 0) {
+        for (let i = 0; i < optionsFlags.length - fix; i++) {
+            values.push(document.getElementById(`opt${i}`).value);
+        }
     }
+    
     
     showOptions();
     
@@ -186,10 +187,17 @@ let setCorrectOption = (index) => {
 }
 
 
-let removeOption = () => {
+let removeOption = (index) => {
     if (optionsFlags.length > 2) {
-        optionsFlags.pop();
-        updateOptions();
+        
+        let values = [];
+
+        for (let i = 0; i < optionsFlags.length; i++) {
+            values.push(document.getElementById(`opt${i}`).value);
+        }
+        optionsFlags.splice(index, 1);
+        values.splice(index, 1);
+        updateOptions(0, values);
     }
 
 }
